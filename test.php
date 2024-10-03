@@ -9,5 +9,6 @@ error_reporting(E_ALL);
 // Your code starts here
 
 echo "Hello, World!";
+echo "Hello, World!";
 
 // Your code ends here
