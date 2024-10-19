@@ -7,6 +7,7 @@ use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\PortfolioController;
 use Illuminate\Support\Facades\Route;
 
+// Home Page Route
 Route::get('/', function () {
     return view('frontend.index');
 });
@@ -15,27 +16,38 @@ Route::get('/', function () {
 
 Route::controller(AdminController::class)
     ->group(function () {
+        // Logout Route
         Route::get('/admin/logout', 'destroy')->name('admin.logout');
+        // Profile Route
         Route::get('/admin/profile', 'Profile')->name('admin.profile');
+        // Edit Profile Route
         Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+        // Store Profile Route
         Route::post('/store/profile', 'StoreProfile')->name('store.profile');
 
+        // Change Password Route
         Route::get('/change/password', 'ChangePassword')->name('change.password');
+        // Update Password Route
         Route::post('/update/password', 'UpdatePassword')->name('update.password');
 
     });
 
 // Home Slide All Route
 Route::controller(HomeSliderController::class)->group(function () {
+    // Home Slider Route
     Route::get('/home/slide', 'HomeSlider')->name('home.slide');
 
+    // Update Slider Route
     Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
 });
 
 // About Page All Route
 Route::controller(AboutController::class)->group(function () {
+    // About Page Route
     Route::get('/about/page', 'AboutPage')->name('about.page');
+    // Update About Route
     Route::post('/update/about', 'UpdateAbout')->name('update.about');
+    // Home About Route
     Route::get('/about', 'HomeAbout')->name('home.about');
 
     Route::get('/about/multi/image', 'AboutMultiImage')->name('about.multi.image');
@@ -84,6 +96,7 @@ Route::controller(BlogCategoryController::class)->group(function () {
 
 Route::controller(BlogController::class)->group(function () {
 
+    // Add Blog Route
     Route::get('/all/blog', 'AllBlog')->name('all.blog');
     Route::get('/add/blog', 'AddBlog')->name('add.blog');
 
@@ -95,11 +108,15 @@ Route::controller(BlogController::class)->group(function () {
         ->name('update.blog');
 
     Route::get('/delete/blog/{id}', 'DeleteBlog')->name('delete.blog');
+    Route::get('/blog/details/{id}', 'BlogDetails')->name('blog.details');
 
+    Route::get('/category/blog/{id}', 'CategoryBlog')->name('category.blog');
+
+    Route::get('/blog', 'HomeBlog')->name('home.blog');
+
+    Route::get('/dashboard', function () {
+        return view('admin.index');
+    })->middleware(['auth', 'verified'])->name('dashboard');
+
+    require __DIR__ . '/auth.php';
 });
-
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-require __DIR__ . '/auth.php';
