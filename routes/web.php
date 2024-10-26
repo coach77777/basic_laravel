@@ -77,6 +77,8 @@ Route::controller(PortfolioController::class)->group(function () {
 
     Route::get('/portfolio/details/{id}', 'PortfolioDetails')->name('portfolio.details');
 
+    Route::get('/portfolio', 'HomePortfolio')->name('home.portfolio');
+
 });
 
 // Blog Category All Routes
