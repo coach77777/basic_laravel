@@ -93,6 +93,8 @@
                                     </div>
                                 </div>
                                 <!-- end row -->
+
+
                                 <input type="submit" class="btn btn-info waves-effect waves-light"
                                     value="Insert Blog Data">
                             </form>

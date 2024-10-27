@@ -24,24 +24,26 @@ Route::controller(DemoController::class)->group(function () {
 });
 
 //Admin All Route
+Route::middleware(['auth'])->group(function () {
 
-Route::controller(AdminController::class)
-    ->group(function () {
-        // Logout Route
-        Route::get('/admin/logout', 'destroy')->name('admin.logout');
-        // Profile Route
-        Route::get('/admin/profile', 'Profile')->name('admin.profile');
-        // Edit Profile Route
-        Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-        // Store Profile Route
-        Route::post('/store/profile', 'StoreProfile')->name('store.profile');
+    Route::controller(AdminController::class)
+        ->group(function () {
+            // Logout Route
+            Route::get('/admin/logout', 'destroy')->name('admin.logout');
+            // Profile Route
+            Route::get('/admin/profile', 'Profile')->name('admin.profile');
+            // Edit Profile Route
+            Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+            // Store Profile Route
+            Route::post('/store/profile', 'StoreProfile')->name('store.profile');
 
-        // Change Password Route
-        Route::get('/change/password', 'ChangePassword')->name('change.password');
-        // Update Password Route
-        Route::post('/update/password', 'UpdatePassword')->name('update.password');
+            // Change Password Route
+            Route::get('/change/password', 'ChangePassword')->name('change.password');
+            // Update Password Route
+            Route::post('/update/password', 'UpdatePassword')->name('update.password');
+        });
 
-    });
+});
 
 // Home Slide All Route
 Route::controller(HomeSliderController::class)->group(function () {
