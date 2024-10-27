@@ -1,7 +1,7 @@
 @extends('frontend.main_master')
 @section('main')
-    @section
-    Portfolio | EasyLearning Website
+@section('title')
+    PortFolio | EasyLearning Website
 @endsection
 <main>
 

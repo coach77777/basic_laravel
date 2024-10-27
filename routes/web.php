@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
@@ -10,8 +11,16 @@ use App\Http\Controllers\Home\PortfolioController;
 use Illuminate\Support\Facades\Route;
 
 // Home Page Route
-Route::get('/', function () {
-    return view('frontend.index');
+
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+
+Route::controller(DemoController::class)->group(function () {
+    Route::get('/', 'HomeMain')->name('home');
+
+    Route::get('/about', 'Index')->name('about.page')->middleware('check');
+    Route::get('/contact', 'ContactMethod')->name('contact.page');
 });
 
 //Admin All Route
